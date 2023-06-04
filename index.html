@@ -1,42 +1,92 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>React App</title>
-    <script src="https://unpkg.com/react@16.14.0/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@16.14.0/umd/react-dom.development.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-  </head>
-  <body>
-    <div id="root"></div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
-    <script type="text/babel">
-      function App() {
-        const [name, setName] = React.useState('');
-        const [submittedName, setSubmittedName] = React.useState('');
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'></div>
+<script type="text/babel">
+    
 
-        const handleSubmit = (e) => {
-          e.preventDefault();
-          setSubmittedName(name);
-          setName('');
-        };
+     function FriendList(props) {
+            return (
+                <ul>
+                    {props.list.map((name) => (
+                        <li key={name}>
+                          <span>{name}</span>
+                          <button onClick={() => props.onRemoveFriend(name)}>Remove</button>
+                        </li>
+                    ))}
+                </ul>
+            )
+        }
 
-        return (
-          <div>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Enter your name"
-              />
-              <button type="submit">Submit</button>
-            </form>
-            {submittedName && <p>Submitted Name: {submittedName}</p>}
-          </div>
-        );
-      }
 
-      ReactDOM.render(<App />, document.getElementById('root'));
-    </script>
-  </body>
+    class App extends React.Component{
+    
+        constructor(props){
+            super(props)
+            this.state = {
+                friends : ['Mann' , 'Ashish' , 'Dhruv'],
+                input : '',
+            }
+            // console.log(this)
+            this.handleRemoveFriend = this.handleRemoveFriend.bind(this)
+            this.updateInput = this.updateInput.bind(this)
+            this.handleAddFriend = this.handleAddFriend.bind(this)
+        }
+        handleAddFriend(){
+            
+            this.setState((currentState) => {
+                return{
+                    friends : currentState.friends.concat([this.state.input]),
+                    input : ''
+                }
+            })
+
+        }
+        handleRemoveFriend(name){
+            // this.setState((currentState)=>{
+            //     return {
+            //         friends : currentState.friends.filter((friend)=>friend !== name)
+            //     }
+            // })
+            this.setState({friends : this.state.friends.filter((friend) => friend !== name)})
+        }
+        updateInput(e){
+            const value = e.target.value
+            this.setState({
+                input : value
+            })
+        }
+
+
+
+        render(){
+            return (
+                
+                <div>
+                    <input type="text" placeholder="Enter Your name : " value={this.state.input} onChange={this.updateInput}/>
+                    <button onClick={this.handleAddFriend}>Submit</button>
+                    <FriendList list = {this.state.friends}
+                    onRemoveFriend = {this.handleRemoveFriend}
+                    />
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('app')
+    )
+</script>
+
+</body>
 </html>
