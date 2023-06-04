@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Avatar(props) {
+        return (
+            React.createElement('img' , {src : props.src})
+        )
+      }
+
+      function Label(props) {
+        return (
+            React.createElement('h1' , {name : props.name})
+        )
+      }
+
+      function ScreenName(props) {
+        return (
+            React.createElement('h3' , {username : props.username})
+        )
+      }
+
+    //   function Badge(props) {
+    //     const user = props.user;
+    //     return (
+    //       <div>
+    //         <Avatar src = {user.img} />
+    //         <Label name = {user.name} />
+    //         <ScreenName username={user.username} />
+    //       </div>
+    //     );
+    //   }
+        function Badge(props){
+            return(
+                React.createElement()
+            )
+        
+        
+        }
+
+
+
+      ReactDOM.render(
+        <Badge
+          user={{
+            name: "Tyler McGinnis",
+            img: "https://avatars0.githubusercontent.com/u/2933430?v=3&s=460",
+            username: "tylermcginnis",
+          }}
+        />,
+        document.getElementById("app")
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <script type="text/babel">
+        import React, { useState, useEffect } from 'react';
+
+        const CodeManager = () => {
+        const [code, setCode] = useState('');
+
+        // Load the code from localStorage on component mount
+        useEffect(() => {
+            const storedCode = localStorage.getItem('storedCode');
+            if (storedCode) {
+            setCode(storedCode);
+            }
+        }, []);
+
+        // Save the code to localStorage whenever it changes
+        useEffect(() => {
+            localStorage.setItem('storedCode', code);
+        }, [code]);
+
+        const handleCodeChange = (event) => {
+            setCode(event.target.value);
+        };
+
+        return (
+            <div>
+            <textarea value={code} onChange={handleCodeChange} rows={10} cols={50} />
+            </div>
+        );
+        };
+
+        export default CodeManager;
+    </script>
+
+
+</body>
+</html>

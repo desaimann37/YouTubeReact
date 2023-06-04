@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React App</title>
+    <script src="https://unpkg.com/react@16.14.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.14.0/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function App() {
+        const [name, setName] = React.useState('');
+        const [submittedName, setSubmittedName] = React.useState('');
+
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          setSubmittedName(name);
+          setName('');
+        };
+
+        return (
+          <div>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your name"
+              />
+              <button type="submit">Submit</button>
+            </form>
+            {submittedName && <p>Submitted Name: {submittedName}</p>}
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
