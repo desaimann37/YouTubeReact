@@ -38,15 +38,39 @@
                 })
             }
         }
-
-
     </script>
-
-
 
 <script type="text/babel">
     
+    class Loading extends React.Component{
+    
+        constructor(props){
+            super(props)
 
+            this.state = {
+                text : 'Loading'
+            }
+        }
+        componentDidMount(){
+            const stopper = this.state.text + '...'
+
+            this.interval = window.setInterval(()=> {
+                (this.state.text === stopper) 
+                ? this.setState({text : 'Loading'}) 
+                : this.setState((currentState)=>{
+                    return{
+                        text : currentState.text + '.'
+                    } 
+                })
+            }, 300)
+        }
+        componentWillUnmount(){
+            window.clearInterval(this.interval)
+        }
+        render(){
+            return <p>{this.state.text}</p>
+        }
+    }
 
     function ActiveFriends(props){
         return (
@@ -93,6 +117,7 @@
             this.state = {
                 friends : [],
                 input : '',
+                loading : true
             }
             // console.log(this)
             this.handleRemoveFriend = this.handleRemoveFriend.bind(this)
@@ -107,7 +132,8 @@
             API.fetchFriends()
             .then((friends)=>{
                 this.setState({
-                    friends
+                    friends,
+                    loading : false
                 })
             })
         }
@@ -132,7 +158,7 @@
                         name : currentState.input,
                         active : true,//By Default
                     }]),
-                    input : ''
+                    input : '',
                 }
             })
 
@@ -162,7 +188,9 @@
         }
         render(){
             console.log('--render--')
-            
+            if(this.state.loading === true){
+                return <Loading/>
+            }
             return (
 
                 <div>

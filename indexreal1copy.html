@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+
+function Nav(props){
+        const languages = ['all' , 'javascript' , 'ruby' , 'python']
+
+        return(
+            <nav>
+                <ul>
+                    {languages.map((lang)=>(
+                        <li key = {lang} onClick={()=>props.onSelectLanguage(lang)}>
+                            {lang}
+                        </li>    
+                    ))}       
+                </ul>    
+            </nav>
+        
+        )
+    }
+
+
+    class App extends React.Component{
+        constructor(props){
+            super(props)
+            this.state = {
+                activeLanguage : 'all',
+                loading : true,
+            } 
+            this.handleSelectLanguage = this.handleSelectLanguage.bind(this)
+        }
+        handleSelectLanguage(lang){
+            this.setState = ({
+                activeLanguage : lang
+            })
+        }
+        render(){
+            return(
+            <div>
+                <Nav onSelectLanguage={this.handleSelectLanguage}/>
+                <h1>ACTIVE LANGUAGE : {this.state.activeLanguage}</h1>
+            </div>
+            )
+        }
+    
+    
+    
+    }
+    ReactDOM.render(
+
+        <App/>,
+        document.getElementById('app')
+    )
+
+
+    </script>
+
+</body>
+</html>
