@@ -18,21 +18,23 @@ import About from './About'
 import Home from './Home'
 import NoteState from './context/notes/NoteState'
 import Navbar from './Navbar'
+import DataFetching from "./component/DataFetching"
 
 function App(){
   return (
-    // <div className='App'>
-    //   {/* <ClassCounter/> */}
-    //   {/* <HookCounter /> */}
-    //   {/* <HookCounterTwo/> */}
-    //   {/* <HookCounterThree/> */}
-    //   {/* <HookCounterFour/> */}
-    //   {/* <ClassCounterOne/> */}
-    //   {/* <HookCounterOne/> */}
-    //   {/* <ClassMouse/> */}
-    //   {/* <HookMouse/> */}
-    //   {/* <MouseContainer/> */}
-    // </div>
+    <div className='App'>
+       {/* <ClassCounter/> */}
+      {/* <HookCounter /> */}
+      {/* <HookCounterTwo/> */}
+      {/* <HookCounterThree/> */}
+       {/* <HookCounterFour/> */}
+       {/* <ClassCounterOne/> */}
+      {/* <HookCounterOne/> */}
+      {/* <ClassMouse/> */}
+      {/* <HookMouse/> */}
+      {/* <MouseContainer/> */}
+   
+    {/*
     <>
       <NoteState>
         <Router>
@@ -44,6 +46,9 @@ function App(){
         </Router>
       </NoteState>
     </>
+  */}
+    <DataFetching/>
+  </div>
   )
 }
 export default App

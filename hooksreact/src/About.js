@@ -6,7 +6,7 @@ import NoteContext from './context/notes/NoteContext'
 function About() {
     const a = useContext(NoteContext)
     useEffect(()=>{
-      a.update()
+      a.update();
     } , [])
   return (
     <div>
