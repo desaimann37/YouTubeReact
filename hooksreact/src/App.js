@@ -19,8 +19,14 @@ import Home from './Home'
 import NoteState from './context/notes/NoteState'
 import Navbar from './Navbar'
 import DataFetching from "./component/DataFetching"
+import ComponentF from "./component/ComponentF"
+
+
+export const ChannelContext = React.createContext()
+export const UserContext = React.createContext()
 
 function App(){
+
   return (
     <div className='App'>
        {/* <ClassCounter/> */}
@@ -47,7 +53,14 @@ function App(){
       </NoteState>
     </>
   */}
-    <DataFetching/>
+    {/* <DataFetching/> */}
+    <UserContext.Provider value={'Vishwas'}>
+      
+      <ChannelContext.Provider value={'CodeRevolution'}>
+        <ComponentF />
+      </ChannelContext.Provider>
+    </UserContext.Provider>
+
   </div>
   )
 }
