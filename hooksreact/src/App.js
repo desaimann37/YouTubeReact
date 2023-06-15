@@ -20,6 +20,8 @@ import NoteState from './context/notes/NoteState'
 import Navbar from './Navbar'
 import DataFetching from "./component/DataFetching"
 import ComponentF from "./component/ComponentF"
+import CounterOneuseReducer from "./component/CounterOneuseReducer"
+import CounterTwouseReducer from "./component/CounterTwouseReducer"
 
 
 export const ChannelContext = React.createContext()
@@ -29,6 +31,8 @@ function App(){
 
   return (
     <div className='App'>
+        {/* <CounterOneuseReducer/> */}
+        <CounterTwouseReducer/>
        {/* <ClassCounter/> */}
       {/* <HookCounter /> */}
       {/* <HookCounterTwo/> */}
@@ -54,8 +58,8 @@ function App(){
     </>
   */}
     {/* <DataFetching/> */}
+    
     <UserContext.Provider value={'Vishwas'}>
-      
       <ChannelContext.Provider value={'CodeRevolution'}>
         <ComponentF />
       </ChannelContext.Provider>
